@@ -47,7 +47,7 @@ public class Cards {
 	 * 
 	 * @param card
 	 * @returns value of the card by parsing the string of it has its value in the
-	 *          card name e.g. "1 of hearts" value is 1. and checks and returns
+	 *          card name e.g. "2 of hearts" value is 2. and checks and returns
 	 *          values for jack, queen, king, and ace.
 	 */
 	protected static int getValue(String card) {
@@ -57,16 +57,16 @@ public class Cards {
 		} else if (Character.isAlphabetic(card.charAt(0))) {
 			switch (card.charAt(0)) {
 			case 'J':
-				value = 10;
-				break;
-			case 'Q':
 				value = 11;
 				break;
-			case 'K':
+			case 'Q':
 				value = 12;
 				break;
-			case 'A':
+			case 'K':
 				value = 13;
+				break;
+			case 'A':
+				value = 14;
 				break;
 			default:
 				System.out.println("Invalid.");
