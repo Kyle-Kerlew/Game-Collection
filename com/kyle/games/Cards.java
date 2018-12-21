@@ -1,23 +1,19 @@
 package com.kyle.games;
 
-import java.util.*;
+import java.util.Random;
+import java.util.ArrayList;
 
 /**
  * A standard deck contains 52 cards.
  */
-public abstract class Cards extends Games {
+public class Cards {
 
-	protected Cards(String name) {
-		super(name);
-		// TODO Auto-generated constructor stub
-	}
+	private static final String[] SUITS = { "Hearts", "Diamonds", "Spades", "Clubs" };
+	private static final String[][] STANDARD_DECK = { { "2 of ", "2" }, { "3 of ", "3" }, { "4 of ", "4" },
+			{ "5 of ", "5" }, { "6 of ", "6" }, { "7 of ", "7" }, { "8 of ", "8" }, { "9 of ", "9" }, { "10 of ", "10" },
+			{ "Jack of ", "11" }, { "Queen of ", "12" }, { "King of ", "13" }, { "Ace of ", "14" } };
 
-	static final String[] SUITS = { "Hearts", "Diamonds", "Spades", "Clubs" };
-	static final String[][] STANDARD_DECK = { { "1 of ", "1" }, { "2 of ", "2" }, { "3 of ", "3" },
-			{ "4 of ", "4" }, { "5 of ", "5" }, { "6 of ", "6" }, { "7 of ", "7" }, { "8 of ", "8" }, { "9 of ", "9" },
-			{ "Jack of ", "10" }, { "Queen of ", "11" }, { "King of ", "12" }, { "Ace of ", "13" } };
-
-	protected void createDeck(ArrayList<String> deck) {
+	protected static void createDeck(ArrayList<String> deck) {
 		for (int i = 0; i < SUITS.length; i++) {
 			for (int j = 0; j < STANDARD_DECK.length; j++) {
 				deck.add(STANDARD_DECK[j][0].concat(SUITS[i]));
@@ -32,7 +28,7 @@ public abstract class Cards extends Games {
 	 * @param deck       - the deck the cards are being pulled from
 	 * @param hand       - Whose hand are these cards being dealt to
 	 */
-	protected void drawCard(int numOfCards, ArrayList<String> deck, ArrayList<String> hand) {
+	protected static void drawCard(int numOfCards, ArrayList<String> deck, ArrayList<String> hand) {
 		Random rand = new Random();
 		int n1, n2, counter = 0;
 		while (counter < numOfCards) {
@@ -54,7 +50,7 @@ public abstract class Cards extends Games {
 	 *          card name e.g. "1 of hearts" value is 1. and checks and returns
 	 *          values for jack, queen, king, and ace.
 	 */
-	protected int getValue(String card) {
+	protected static int getValue(String card) {
 		int value = 0;
 		if (Character.isDigit(card.charAt(0))) {
 			value = Integer.parseInt(Character.toString(card.charAt(0)));

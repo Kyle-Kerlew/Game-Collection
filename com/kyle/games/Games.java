@@ -11,7 +11,7 @@ public abstract class Games {
 	protected Games(String name) {
 		this.name = name;
 	}
-
+	
 	/**
 	 * This function takes in all the data prior to beginning gameplay. What is the
 	 * user's name? Does the user know how to play? Will the user play against
@@ -73,10 +73,10 @@ public abstract class Games {
 		String decision = sc.nextLine();
 		if (decision.equalsIgnoreCase("Yes")) {
 			switch (name) {
-			case "war":
+			case "War":
 				new War();
 				break;
-			case "tic tac toe":
+			case "Tic Tac Toe":
 				new TicTacToe();
 				break;
 			default:

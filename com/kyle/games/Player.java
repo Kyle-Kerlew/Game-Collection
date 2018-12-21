@@ -4,9 +4,11 @@ import java.util.Scanner;
 
 public class Player {
 
-	protected static Player winner; 
+	protected static Player winner;
+
 	private String username;
-	
+	private int numOfWins;
+	private int numOfLosses;
 
 	protected Player(String username) {
 		this.username = username;
@@ -23,8 +25,19 @@ public class Player {
 		sc.close();
 	}
 
-	/**
-	 * TODO: Move player deck to this class for encapsulation
-	 */
+	protected int getWins() {
+		return numOfWins;
+	}
 
+	protected int getLosses() {
+		return numOfLosses;
+	}
+
+	protected void addWin() {
+		numOfWins++;
+	}
+
+	protected void addLoss() {
+		numOfLosses++;
+	}
 }
