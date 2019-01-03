@@ -29,8 +29,7 @@ public class War extends Games {
 	 * simulate playing with another player . Makes use of ArrayLists to have
 	 * precise control of indexes
 	 */
-	@Override
-	protected void gameController(int playerMode, String playerOneUser, String playerTwoUser) {
+	public void gameController(int playerMode, String playerOneUser, String playerTwoUser) {
 
 		ArrayList<String> deck = new ArrayList<>();
 		ArrayList<String> playerTwoHand = new ArrayList<>();
@@ -40,8 +39,10 @@ public class War extends Games {
 		Cards.drawCard(52 / 2, deck, playerTwoHand);
 		Cards.drawCard(52 / 2, deck, playerOneHand);
 
-		Player playerOne = new Player(playerOneUser);
-		Player playerTwo = new Player(playerTwoUser);
+		Player playerOne = new Player();
+		Player playerTwo = new Player();
+		playerOne.setUsername(playerOneUser);
+		playerTwo.setUsername(playerTwoUser);
 
 		while (gameActive(playerTwoHand, playerOneHand)) {
 			System.out.printf("%s puts down a card...\nit's a(n) %s\n", playerTwo.getUsername(), playerTwoHand.get(0));
@@ -111,11 +112,11 @@ public class War extends Games {
 					playerOneHand.size(), playerTwo.getUsername(), playerTwoHand.size());
 		}
 		if (playerOneHand.isEmpty()) {
-			Player.winner = playerTwo;
+			super.winner = playerTwo;
 			playerTwo.addWin();
 			playerOne.addLoss();
 		} else if (playerTwoHand.isEmpty()) {
-			Player.winner = playerOne;
+			super.winner = playerOne;
 			playerOne.addWin();
 			playerTwo.addLoss();
 		}
@@ -123,15 +124,13 @@ public class War extends Games {
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
-	protected boolean gameActive(Object... hands) {
+	public boolean gameActive(Object... hands) {
 		ArrayList<String> hand1 = ((ArrayList<String>) hands[0]);
 		ArrayList<String> hand2 = ((ArrayList<String>) hands[1]);
 		return !hand1.isEmpty() && !hand2.isEmpty() ? true : false;
 	}
 
-	@Override
-	protected void howToPlay() {
+	public void howToPlay() {
 		System.out.println("The goal is to be the first player to win all 52 cards\r\n" + "\r\n" + "THE DEAL\r\n"
 				+ "The deck is divided evenly, with each player receiving 26 cards, dealt one at a time, face down. Anyone may deal first. Each player places his stack of cards face down, in front of him.\r\n"
 				+ "\r\n" + "THE PLAY\r\n"

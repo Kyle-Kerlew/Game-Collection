@@ -7,8 +7,9 @@ import com.kyle.initialization.Main;
 public abstract class Games {
 
 	private String name;
+	public Player winner;
 
-	protected Games(String name) {
+	public Games(String name) {
 		this.name = name;
 	}
 	
@@ -19,15 +20,14 @@ public abstract class Games {
 	 * game is initialized with that data.
 	 */
 
-	protected void initializeGame() {
+	public void initializeGame() {
 		System.out.println("Welcome to the game " + getName() + ".\nWhat would you like your username to be?");
 		Scanner sc = new Scanner(System.in);
 		String playerOneUser = sc.nextLine();
 		System.out.println("Do you know how to play? Yes or no.");
 		String help = sc.next();
-		if (!help.equalsIgnoreCase("Yes")) {
+		if (!help.equalsIgnoreCase("Yes"))
 			howToPlay();
-		}
 		System.out.println(
 				"\nWould you like to play against a computer or another player?\nPress 1 for computer and 2 for another player.");
 		int playerMode = sc.nextInt();
@@ -49,24 +49,24 @@ public abstract class Games {
 	 * @param playerMode - Against a computer or other players?
 	 * @param username   - What are these player's names?
 	 */
-	protected abstract void gameController(int playerMode, String playerOneUser, String playerTwoUser);
+	public abstract void gameController(int playerMode, String playerOneUser, String playerTwoUser);
 
 	/**
 	 * 
 	 * @return whether or not the game is active
 	 * @param Whatever params the boolean may need to pass
 	 */
-	protected abstract boolean gameActive(Object... objects);
+	public abstract boolean gameActive(Object... objects);
 
 	/**
 	 * This method handles ending the game process after a winner has been
 	 * determined
 	 */
-	protected void endGame() {
-		if (Player.winner == null) {
+	public void endGame() {
+		if (winner == null) {
 			System.out.println("It's a draw!");
 		} else {
-			System.out.printf("Congratulations %s!\n", Player.winner.getUsername());
+			System.out.printf("Congratulations %s!\n", winner.getUsername());
 		}
 		System.out.println("Would you like to play another game of " + name + "? Yes or no?");
 		Scanner sc = new Scanner(System.in);
@@ -98,14 +98,14 @@ public abstract class Games {
 	 * This method is solely responsible for teaching the user how to play the game
 	 * if they don't know.
 	 */
-	protected abstract void howToPlay();
+	public abstract void howToPlay();
 
 	/**
 	 * This method exists to simulate pauses in gameplay.
 	 * 
 	 * @param length
 	 */
-	protected void pause(int length) {
+	public void pause(int length) {
 		try {
 			Thread.sleep(length);
 		} catch (InterruptedException e) {
@@ -113,7 +113,7 @@ public abstract class Games {
 		}
 	}
 
-	protected String getName() {
-		return this.name;
+	public String getName() {
+		return name;
 	}
 }
