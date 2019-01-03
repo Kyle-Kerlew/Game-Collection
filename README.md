@@ -1,8 +1,11 @@
-# Portion of Java portfolio, this project uses basic Java functions to simulate a game collection (including tic tac toe and War)
+# Board Game Simulations
+Contains common board and card games simulated through a command prompt. 
+Version 1.1 contains War and Tic Tac Toe
 
-How to use:
-Included in this folder is a "Game Simulation.Jar" this is an executable jar of the project. How to run:
-- Download the Jar
-- Open your Command Prompt
-- Run the jar using the following syntaxt: "Java - jar "<Directory of jar.Jar"
-The program will then run from the command prompt.
+### Instructions to Use 
+1.) Download ZIP < br/>
+2.) Extract all files <br />
+3.) Double-click "Execute" <br />
+4.) You may get a Windows Security Warning asking you to review the file before running it.<br />
+
+5.) Program will open in a command prompt<br />

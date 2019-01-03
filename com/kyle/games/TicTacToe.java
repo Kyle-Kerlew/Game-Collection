@@ -1,6 +1,7 @@
 package com.kyle.games;
 
 import java.util.LinkedHashMap;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -19,7 +20,6 @@ public class TicTacToe extends Games {
 	 * @see com.kyle.games.Games#gameController(int, java.lang.String[])
 	 */
 	public void gameController(int playerMode, String playerOneUser, String playerTwoUser) {
-
 		LinkedHashMap<Integer, String> table = new LinkedHashMap<>();
 
 		Player playerOne = new Player();
@@ -37,7 +37,7 @@ public class TicTacToe extends Games {
 			int move;
 			move = sc.nextInt();
 			if (move > 9 || move < 1) {
-				System.out.println("Invalid number.");
+				System.out.println("Invalid move.");
 			} else if (table.containsValue(Integer.toString(move))) {
 				table.replace(move, "X");
 				displayTable(table);
@@ -48,15 +48,27 @@ public class TicTacToe extends Games {
 			if (gameActive(table, playerOne, playerTwo)) {
 				System.out.println(playerTwo.getUsername()
 						+ ", make your move by typing in the number of where you'd like to move.");
-				move = sc.nextInt();
-				if (move > 9 || move < 1) {
-					System.out.println("Invalid number.");
-				} else if (table.containsValue(Integer.toString(move))) {
+				if (playerMode == 1) { //Simulates computer
+					Random r = new Random();
+					move = r.nextInt(9) + 1; // from 1 - 9
+					while (!table.containsValue(Integer.toString(move))) {
+						move = r.nextInt(9) + 1;
+					}
 					table.replace(move, "O");
+					System.out.println("Computer moved to: " + move);
 					displayTable(table);
 				} else {
-					System.out.printf("%s has already moved there. Select another space.",
-							table.get(move).equalsIgnoreCase("X") ? playerOne.getUsername() : playerTwo.getUsername());
+					move = sc.nextInt();
+					if (move > 9 || move < 1) {
+						System.out.println("Invalid move.");
+					} else if (table.containsValue(Integer.toString(move))) {
+						table.replace(move, "O");
+						displayTable(table);
+					} else {
+						System.out.printf("%s has already moved there. Select another space.",
+								table.get(move).equalsIgnoreCase("X") ? playerOne.getUsername()
+										: playerTwo.getUsername());
+					}
 				}
 			}
 		}
